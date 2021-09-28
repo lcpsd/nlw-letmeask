@@ -30,6 +30,8 @@
             margin-top: 1rem;
             color: #f8f8f8;
         }
+
+
     }
 
     main{
@@ -52,6 +54,12 @@
             align-self: center;
         }
 
+        h2{
+            font: 700 1.5rem 'Poppins',sans-serif;
+            margin: 4rem 0 1.3rem;
+
+        }
+
         form{
 
             display: flex;
@@ -68,6 +76,18 @@
             button{
                 margin-top: 1rem;
             }
+
+            a{
+                color: #e559f9;
+            }
+            
+        }
+
+        p{
+            font-size: 1rem;
+            color: #737380;
+            margin-top: 0.8rem;
+            font-family: 'Roboto', sans-serif;
         }
     }
 
