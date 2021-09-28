@@ -3,6 +3,7 @@ import logoImg from '../assets/images/logo.svg'
 import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.scss'
 import { Button } from '../components/Button'
+import {Link} from 'react-router-dom'
 
 export function NewRoom(){
     return (
@@ -29,7 +30,7 @@ export function NewRoom(){
                         <Button  type="submit">Criar sala</Button>
                     </form>
 
-                    <p><a href="">Entrar em uma sala existente</a></p>
+                    <p><Link to="/">Entrar em uma sala existente</Link></p>
                 </div>
             </main>
         </div>
