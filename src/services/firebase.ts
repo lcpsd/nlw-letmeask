@@ -9,7 +9,7 @@ const firebaseConfig = {
     databaseURL: process.env.REACT_APP_DATABASE_URL,
     projectId: process.env.REACT_APP_DATABASE_URL,
     storageBucket: process.env.REACT_APP_DATABASE_URL,
-    messagingSenderId: "166307600000",
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_DATABASE_URL
   };
 
