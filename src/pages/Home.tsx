@@ -4,12 +4,20 @@ import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.scss'
 import { Button } from '../components/Button'
 import {useHistory} from 'react-router-dom'
+import {auth, firebase} from '../services/firebase'
 
 export function Home(){
-
+    
     const history = useHistory()
 
-    function navigateToNewRoom(){
+    function handleCreateRoom(){
+
+        const provider = new firebase.auth.GoogleAuthProvider()
+
+        auth.signInWithPopup(provider).then(result => {
+            
+        })
+
         history.push('/rooms/new')
     }
 
@@ -27,7 +35,7 @@ export function Home(){
             <main>
                 <div className="mainContent">
                     <img src={logoImg} alt="logo letmeask" />
-                    <button className="createRoomButton" onClick={navigateToNewRoom}>
+                    <button className="createRoomButton" onClick={handleCreateRoom}>
                         <img src={googleIcon} alt="Logo do google" />
                         Criar sala com o google
                     </button>
