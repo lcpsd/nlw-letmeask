@@ -1,23 +1,30 @@
+//React
+import {useHistory} from 'react-router-dom'
+import {useContext} from 'react'
+import { Button } from '../components/Button'
+import { AuthContext } from '../App'
+
+//Outros
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.scss'
-import { Button } from '../components/Button'
-import {useHistory} from 'react-router-dom'
-import {auth, firebase} from '../services/firebase'
 
 export function Home(){
     
+    //importa os dados do usuário e a função de login google
+    const {user, signInWithGoogle} = useContext(AuthContext)
+
     const history = useHistory()
 
-    function handleCreateRoom(){
+    //verifica se o usuário está logado, se não estiver, espera logar
+    async function handleCreateRoom(){
 
-        const provider = new firebase.auth.GoogleAuthProvider()
+        if(!user){
+            await signInWithGoogle()
+        }
 
-        auth.signInWithPopup(provider).then(result => {
-            
-        })
-
+        //encaminha o usuário para a criação das telas se logado
         history.push('/rooms/new')
     }
 
