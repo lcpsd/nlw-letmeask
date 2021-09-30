@@ -1,19 +1,18 @@
 //React
 import {useHistory} from 'react-router-dom'
-import {useContext} from 'react'
 import { Button } from '../components/Button'
-import { AuthContext } from '../App'
 
 //Outros
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 import googleIcon from '../assets/images/google-icon.svg'
 import '../styles/auth.scss'
+import { useAuth } from '../hooks/useAuth'
 
 export function Home(){
     
     //importa os dados do usuário e a função de login google
-    const {user, signInWithGoogle} = useContext(AuthContext)
+    const {user, signInWithGoogle} = useAuth()
 
     const history = useHistory()
 
