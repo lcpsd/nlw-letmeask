@@ -12,7 +12,7 @@ type QuestionType = {
     isAnswered: boolean;
     isHighLighted: boolean
     likeCount: number;
-    likedId: string | undefined;
+    likeId: string | undefined;
 }
 
 type FirebaseQuestions = Record<string, {
@@ -44,6 +44,7 @@ export function UseRoom(roomId: string){
             const FirebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {}
 
             const parsedQuestions = Object.entries(FirebaseQuestions).map(([key, value]) => {
+
                 return {
                     id: key,
                     author: value.author,
