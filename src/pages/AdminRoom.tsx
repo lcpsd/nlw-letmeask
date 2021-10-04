@@ -1,13 +1,12 @@
-import { FormEvent, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import logoImg from '../assets/images/logo.svg'
 import { Button } from '../components/Button'
 import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
-import { useAuth } from '../hooks/useAuth'
 import { UseRoom } from '../hooks/useRoom'
-import { database } from '../services/firebase'
+import deleteImg from '../assets/images/delete.svg'
 import '../styles/room.scss'
+import { database } from '../services/firebase'
 
 
 type RoomParams = {
@@ -16,41 +15,27 @@ type RoomParams = {
 
 
 export function AdminRoom() {
+
+    const history = useHistory()
+
     const params = useParams<RoomParams>()
     const roomId = params.id
 
     const {title, questions} = UseRoom(roomId)
     
-    const {user} = useAuth()
-    
-    
-    const [newQuestion, setNewQuestion] = useState('')
+    async function handleEndRoom(){
+        await database.ref(`rooms/${roomId}`).update({
+            endedAt: new Date()
+        })
 
-    async function handleSendQuestion(event: FormEvent){
+        history.push('/')
+    }
 
-        event.preventDefault()
-
-        if(newQuestion.trim() === ''){
-            return
-        }
-
-        if(!user){
-            throw new Error('não logado')
-        }
-
-        const question = {
-            content: newQuestion,
-            author: {
-                name: user.name,
-                avatar: user.avatar
-            },
-            isHighLighted: false,
-            isAnswered: false
+    async function handleDeleteQuestion(questionId: string){
+        if(window.confirm('Tem certeza que deseja excluir essa pergunta?')){
+            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
         }
         
-        await database.ref(`rooms/${roomId}/questions`).push(question)
-
-        setNewQuestion('')
     }
 
     return (
@@ -60,7 +45,7 @@ export function AdminRoom() {
                     <img src={logoImg} alt="" />
                     <div>
                         <RoomCode code={roomId} />
-                        <Button isOutlined>Encerrar sala</Button>
+                        <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
                     </div>
 
                 </div>
@@ -96,7 +81,11 @@ export function AdminRoom() {
                                     content={question.content}
                                     author={question.author}
                                     key={question.id}
-                                />
+                                >
+                                    <button type="button" onClick={() => handleDeleteQuestion(question.id)}>
+                                        <img src={deleteImg} alt="" />
+                                    </button>
+                                </Question>
                             )
                         })
                     }
