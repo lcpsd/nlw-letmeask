@@ -2,10 +2,10 @@
     display: flex;
     align-items: stretch;
     height: 100vh;
+    
 
     aside{
         flex: 7;
-        
         background: #835afd;
         color: #fff;
         display: flex;
@@ -143,3 +143,32 @@
     }
 
 }
+
+
+//mobile
+@media (max-width: 599px) { 
+    #pageAuth {
+        aside{
+            display: none !important;
+        }
+    }
+ }
+
+ //tablet
+@media (min-width: 600px) { 
+    #pageAuth {
+        aside{
+            display: none !important;
+        }
+    }
+ }
+
+
+//Desktop
+@media (min-width: 1200px) { 
+    #pageAuth {
+        aside{
+            display: block !important;
+        }
+    }
+ }

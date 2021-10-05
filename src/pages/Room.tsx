@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import logoImg from '../assets/images/logo.svg'
 import { Button } from '../components/Button'
 import { Question } from '../components/Question'
@@ -8,6 +8,7 @@ import { useAuth } from '../hooks/useAuth'
 import { UseRoom } from '../hooks/useRoom'
 import { database } from '../services/firebase'
 import '../styles/room.scss'
+import hamburguerImg from '../assets/images/hamburguer.svg'
 
 
 type RoomParams = {
@@ -16,6 +17,9 @@ type RoomParams = {
 
 
 export function Room() {
+
+    const {googleSignout} = useAuth()
+
     const params = useParams<RoomParams>()
     const roomId = params.id
 
@@ -23,7 +27,8 @@ export function Room() {
     
     const {user} = useAuth()
     
-    
+    const history = useHistory() 
+
     const [newQuestion, setNewQuestion] = useState('')
 
     async function handleSendQuestion(event: FormEvent){
@@ -65,12 +70,28 @@ export function Room() {
         }
     }
 
+    function toggleMenu(){
+        const menu = document.querySelector('.menu')
+        menu?.classList.toggle('show')
+    }
+
+    function goToHome(){
+        history.push('/')
+    }
+
     return (
         <div id="page-room">
             <header>
                 <div className="content">
-                    <img src={logoImg} alt="" />
+                    <img src={logoImg} alt="" className="logo" onClick={goToHome}/>
+
                     <RoomCode code={roomId} />
+                    <div className="menu">
+                        <Button onClick={googleSignout} isOutlined>Sair da conta</Button> 
+                    </div>
+                    <div className="hamburguer-menu">
+                        <img src={hamburguerImg} alt="" onClick={toggleMenu} />
+                    </div>
                 </div>
             </header>
 
