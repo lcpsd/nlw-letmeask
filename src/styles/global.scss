@@ -1,0 +1,21 @@
+/*RESET*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color: #f8f8f8f8;
+    --text-color:#29292e;
+    --font-body: 400 1rem 'Roboto', sans-serif;
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+body input button textarea{
+    font: var(--font-body)
+}
