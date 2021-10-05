@@ -4,7 +4,7 @@
 ## About
 A plataform for streamers to Q&A in live developed in **Rocketseat: ReactJs.**
 
-### Features
+## Features
 
  - Login with google (User/Admin)
  - Logout of google (User/Admin)
@@ -17,6 +17,11 @@ A plataform for streamers to Q&A in live developed in **Rocketseat: ReactJs.**
  - Enter into a room (User)
  - Ask (User)
  - Like a question (User)
+ 
+## Tecnologies
+- React JS
+- Sass
+- Webpack
 
 ## Hosting
 https://letmeask-5e6fe.web.app/
