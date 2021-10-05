@@ -5,8 +5,11 @@ import { Question } from '../components/Question'
 import { RoomCode } from '../components/RoomCode'
 import { UseRoom } from '../hooks/useRoom'
 import deleteImg from '../assets/images/delete.svg'
+import checkImg from '../assets/images/check.svg'
+import answerImg from '../assets/images/answer.svg'
 import '../styles/room.scss'
 import { database } from '../services/firebase'
+import { Fragment } from 'react'
 
 
 type RoomParams = {
@@ -29,6 +32,18 @@ export function AdminRoom() {
         })
 
         history.push('/')
+    }
+
+    async function handleCheckQuestion(questionId:string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isAnswered: true
+        })
+    }
+
+    async function handleHighLightQuestion(questionId:string) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+            isHighlighted: true
+        })
     }
 
     async function handleDeleteQuestion(questionId: string){
@@ -73,7 +88,7 @@ export function AdminRoom() {
                     }
                 </div>
 
-                <div className="question-lis">
+                <div className="question-list">
                     {
                         questions.map(question => {
                             return(
@@ -81,7 +96,24 @@ export function AdminRoom() {
                                     content={question.content}
                                     author={question.author}
                                     key={question.id}
-                                >
+                                    isAnswered={question.isAnswered}
+                                    isHighlighted={question.isHighlighted}
+                                >   
+                                    {!question.isAnswered &&
+                                        (
+                                            <Fragment>
+                                                <button type="button" onClick={() => handleCheckQuestion(question.id)}>
+                                                    <img src={checkImg} alt="" />
+                                                </button>
+
+                                                <button type="button" onClick={() => handleHighLightQuestion(question.id)}>
+                                                    <img src={answerImg} alt="" />
+                                                </button>
+                                            </Fragment>
+                                        )
+                                    
+                                    }
+
                                     <button type="button" onClick={() => handleDeleteQuestion(question.id)}>
                                         <img src={deleteImg} alt="" />
                                     </button>
