@@ -1,17 +1,29 @@
 #page-room{
 
+
     font-family: 'Roboto', sans-serif;
 
     header{
         padding: 24px;
         border-bottom: 1px solid #e2e2e2;
 
-        .content{
+        .content, .menu{
             max-width: 1120px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            gap: 16px;
+
+            div{
+                .hamburguer-menu{
+                    visibility: hidden;
+                    img{
+                        height: 40px;
+                    }
+                }
+            }
 
             > div{
                 display: flex;
@@ -117,20 +129,74 @@
 }
 
 
-@mixin for-phone-only {
-    @media (max-width: 599px) { 
-        
+//mobile
+@media (max-width: 599px) { 
+    #page-room{
+        header{
+
+            .logo{
+                display: none;
+            }
+
+            .content {
+                .menu{
+                    visibility: hidden;
+                    background: #f8f8f8;
+                    height: 200px;
+                    position: absolute;
+                    justify-content: center !important;
+                    align-items: stretch !important;
+                    padding: 20px;
+                    flex-direction: column;
+                    top: 100px;
+                    border-bottom: 1px solid #e2e2e2;
+                    right: 0;
+                    left: 0;
+                    z-index: 10;
+                    box-shadow: 0px 2px 6px rgba(0,0,0, 0.1);
+
+                    #back{
+                        position: absolute;
+                        top: 0px;
+                        left: 10px;
+                    }
+                }
+
+                div{
+                    flex: 1;
+
+                    .hamburguer-menu{
+                        visibility: visible;
+                        flex:1;
+                        order: 3;
+                    }
+
+                    .room-code{
+                        flex: 5;
+                    }
+                }
+
+
+
+                .menu.show{
+                    visibility: visible;
+                }
+            }
+        }
+
+        main{
+            padding: 0 40px;
+            padding-bottom: 40px;
+        }
     }
-  }
-  @mixin for-tablet-portrait-up {
-    @media (min-width: 600px) { @content; }
-  }
-  @mixin for-tablet-landscape-up {
-    @media (min-width: 900px) { @content; }
-  }
-  @mixin for-desktop-up {
-    @media (min-width: 1200px) { @content; }
-  }
-  @mixin for-big-desktop-up {
-    @media (min-width: 1800px) { @content; }
-  }
+ }
+
+ //tablet
+@media (min-width: 600px) { 
+    
+ }
+
+//Desktop
+@media (min-width: 1200px) { 
+    
+ }

@@ -7,6 +7,7 @@ import { UseRoom } from '../hooks/useRoom'
 import deleteImg from '../assets/images/delete.svg'
 import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
+import hamburguerImg from '../assets/images/hamburguer.svg'
 import '../styles/room.scss'
 import { database } from '../services/firebase'
 import { Fragment } from 'react'
@@ -73,6 +74,11 @@ export function AdminRoom() {
         
     }
 
+    function toggleMenu(){
+        const menu = document.querySelector('.menu')
+        menu?.classList.toggle('show')
+    }
+
     return (
 
         <div id="page-room">
@@ -80,11 +86,16 @@ export function AdminRoom() {
                 <>
                 <header>
                     <div className="content">
-                        <img src={logoImg} alt="" />
+                        <img src={logoImg} alt="" className="logo"/>
                         <div>
-                            <RoomCode code={roomId} />
-                            <Button onClick={handleEndRoom}>Encerrar sala</Button>
-                            <Button onClick={googleSignout} isOutlined>Logout</Button> 
+                            <div className="hamburguer-menu">
+                                <img src={hamburguerImg} alt="" onClick={toggleMenu} />
+                            </div>
+                            <RoomCode code={roomId}/>
+                            <div className="menu">
+                                <Button onClick={handleEndRoom}>Encerrar sala</Button>
+                                <Button onClick={googleSignout} isOutlined>Logout</Button> 
+                            </div>
                         </div>
 
                     </div>
