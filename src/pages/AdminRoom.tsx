@@ -79,6 +79,10 @@ export function AdminRoom() {
         menu?.classList.toggle('show')
     }
 
+    function goToHome(){
+        history.push('/')
+    }
+
     return (
 
         <div id="page-room">
@@ -86,7 +90,7 @@ export function AdminRoom() {
                 <>
                 <header>
                     <div className="content">
-                        <img src={logoImg} alt="" className="logo"/>
+                        <img src={logoImg} alt="" className="logo" onClick={goToHome}/>
                         <div>
                             <div className="hamburguer-menu">
                                 <img src={hamburguerImg} alt="" onClick={toggleMenu} />
@@ -94,7 +98,7 @@ export function AdminRoom() {
                             <RoomCode code={roomId}/>
                             <div className="menu">
                                 <Button onClick={handleEndRoom}>Encerrar sala</Button>
-                                <Button onClick={googleSignout} isOutlined>Logout</Button> 
+                                <Button onClick={googleSignout} isOutlined>Sair da conta</Button> 
                             </div>
                         </div>
 
