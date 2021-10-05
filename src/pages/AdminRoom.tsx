@@ -150,7 +150,7 @@ export function AdminRoom() {
         
                 </>
              : 
-                <div>Você não é o administrador!</div>
+                <div id="page-room">Você não é o administrador!</div>
              }
         </div>
     )
