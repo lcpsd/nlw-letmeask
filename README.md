@@ -32,9 +32,6 @@ A plataform for streamers to Q&A in live developed in **Rocketseat: ReactJs.**
 - REACT_APP_MESSAGING_SENDER_ID=166307600000
 - REACT_APP_APP_ID=1:166307600000:web:9fa6906560ea208d5cb865
 
-## Hosting
-https://letmeask-5e6fe.web.app/
-
 ## Available Scripts
 
 In the project directory, you can run:
