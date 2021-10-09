@@ -1,6 +1,3 @@
-
-# Getting Started with Create React App
-
 ## About
 A plataform for streamers to Q&A in live developed in **Rocketseat: ReactJs.**
 
