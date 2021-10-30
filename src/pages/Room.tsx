@@ -25,7 +25,7 @@ export function Room() {
 
     const {title, questions} = UseRoom(roomId)
     
-    const {user} = useAuth()
+    const {user, signInWithGoogle} = useAuth()
     
     const history = useHistory() 
 
@@ -131,7 +131,7 @@ export function Room() {
                                 <span>{user.name}</span>
                             </div>
                         ) : (
-                            <span> Para enviar uma pergunta, <button>faça login</button></span>
+                            <span> Para enviar uma pergunta, <button onClick={signInWithGoogle}>faça login</button></span>
                         )}
 
                         <Button type="submit" disabled={!user}>Enviar pergunta</Button>
